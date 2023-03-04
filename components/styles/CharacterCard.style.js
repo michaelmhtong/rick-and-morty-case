@@ -5,6 +5,7 @@ export const CharacterWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 2rem;
+  padding-bottom: 6rem;
   grid-gap: 3rem;
   grid-auto-rows: 1fr;
   @media screen and (max-width: 1100px) {
