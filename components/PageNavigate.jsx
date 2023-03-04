@@ -1,17 +1,27 @@
 import Link from "next/link";
 import React from "react";
+import { PageNavigateWrapper, PageNavigateButton } from "./styles/PageNavigate.style";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const PageNavigate = (props) => {
   const { nextPage, prevPage, currentPage, pagesCount } = props;
 
   return (
-    <div>
-      {prevPage && <Link href={`${prevPage}`}>-</Link>}
+    <PageNavigateWrapper>
+      {prevPage && (
+        <PageNavigateButton href={`${prevPage}`}>
+          <IoIosArrowBack />
+        </PageNavigateButton>
+      )}
       <span>
         Page {currentPage} of {pagesCount}
       </span>
-      {nextPage && <Link href={`${nextPage}`}>+</Link>}
-    </div>
+      {nextPage && (
+        <PageNavigateButton href={`${nextPage}`}>
+          <IoIosArrowForward />
+        </PageNavigateButton>
+      )}
+    </PageNavigateWrapper>
   );
 };
 

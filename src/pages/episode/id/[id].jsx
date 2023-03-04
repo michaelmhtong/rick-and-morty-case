@@ -5,6 +5,9 @@ import { GET_EPISODE } from "../../../../apollo/queries/episodeQuery";
 import Loading from "../../../../components/Loading";
 import ErrorCard from "../../../../components/ErrorCard";
 import CharacterCard from "../../../../components/CharacterCard";
+import { Heading } from "@/pages/globalStyle";
+import { CharacterWrapper } from "../../../../components/styles/CharacterCard.style";
+import BackButton from "../../../../components/BackButton";
 
 const Episode = () => {
   const router = useRouter();
@@ -21,14 +24,17 @@ const Episode = () => {
   const { episode } = data;
 
   return (
-    <div>
-      <h1>
+    <>
+      <BackButton />
+      <Heading>
         {episode.episode} {episode.name}
-      </h1>
-      {episode.characters.map((character) => (
-        <CharacterCard character={character} />
-      ))}
-    </div>
+      </Heading>
+      <CharacterWrapper>
+        {episode.characters.map((character) => (
+          <CharacterCard character={character} />
+        ))}
+      </CharacterWrapper>
+    </>
   );
 };
 
