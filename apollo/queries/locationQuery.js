@@ -1,17 +1,27 @@
 import { gql } from "@apollo/client";
 
-export const LOCATION_ALL_QUERY = gql`
-  query {
-    locations {
+export const GET_ALL_LOCATIONS = gql`
+  query ($page: Int) {
+    locations(page: $page) {
+      info {
+        pages
+        next
+        prev
+      }
       results {
         id
         name
+        type
+        dimension
+        residents {
+          id
+        }
       }
     }
   }
 `;
 
-export const LOCATION_QUERY = gql`
+export const GET_LOCATION = gql`
   query GetLocation($id: ID!) {
     location(id: $id) {
       name
@@ -26,9 +36,15 @@ export const LOCATION_QUERY = gql`
           id
           name
         }
+        location {
+          id
+          name
+          dimension
+        }
         image
         episode {
           id
+          episode
         }
       }
     }
