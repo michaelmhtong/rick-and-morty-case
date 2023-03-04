@@ -5,6 +5,9 @@ import { GET_LOCATION } from "../../../../apollo/queries/locationQuery";
 import Loading from "../../../../components/Loading";
 import ErrorCard from "../../../../components/ErrorCard";
 import CharacterCard from "../../../../components/CharacterCard";
+import { Heading } from "@/pages/globalStyle";
+import { CharacterWrapper } from "../../../../components/styles/CharacterCard.style";
+import BackButton from "../../../../components/BackButton";
 
 const Location = () => {
   const router = useRouter();
@@ -14,19 +17,21 @@ const Location = () => {
   if (loading) {
     return <Loading />;
   }
+
   if (error) {
     return <ErrorCard />;
   }
 
-  const { location } = data;
-
   return (
-    <div>
-      <h1>{location.name}</h1>
-      {location.residents.map((character) => (
-        <CharacterCard character={character} />
-      ))}
-    </div>
+    <>
+      <BackButton />
+      <Heading>Location - {data.location.name}</Heading>
+      <CharacterWrapper>
+        {data.location.residents.map((character) => (
+          <CharacterCard character={character} />
+        ))}
+      </CharacterWrapper>
+    </>
   );
 };
 
