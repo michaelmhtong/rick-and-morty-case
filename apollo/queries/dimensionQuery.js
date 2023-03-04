@@ -12,6 +12,10 @@ export const GET_DIMENSIONS_CHARACTER_ID = gql`
         id
         name
         type
+        dimension
+        residents {
+          id
+        }
       }
     }
   }

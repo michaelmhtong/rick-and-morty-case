@@ -1,13 +1,21 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL_EPISODES = gql`
-  query {
-    episodes {
+  query ($page: Int) {
+    episodes(page: $page) {
+      info {
+        pages
+        next
+        prev
+      }
       results {
         id
         name
         air_date
         episode
+        characters {
+          id
+        }
       }
     }
   }

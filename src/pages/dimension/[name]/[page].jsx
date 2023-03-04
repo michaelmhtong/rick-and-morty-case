@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import { GET_DIMENSIONS_CHARACTER_ID } from "../../../../apollo/queries/dimensionQuery";
 import Loading from "../../../../components/Loading";
-import CharacterCard from "../../../../components/CharacterCard";
 import ErrorCard from "../../../../components/ErrorCard";
 import PageNavigate from "../../../../components/PageNavigate";
-import { GET_BY_CHARACTERS_ID } from "../../../../apollo/queries/characterQuery";
 import GridCard from "../../../../components/GridCard";
+import { Heading } from "@/pages/globalStyle";
+import { CardWrapper } from "../../../../components/styles/GridCard.style";
 
 const Dimension = () => {
   const router = useRouter();
@@ -26,18 +26,22 @@ const Dimension = () => {
 
   const { locations } = data;
   return (
-    <div>
-      <h1>{name}</h1>
-      {locations.results.map((character) => (
-        <GridCard type="location" data={character} />
-      ))}
+    <>
+      <Heading>
+        {name} ({locations.results.length} locations)
+      </Heading>
+      <CardWrapper>
+        {locations.results.map((character) => (
+          <GridCard type="location" data={character} />
+        ))}
+      </CardWrapper>
       <PageNavigate
         nextPage={locations.info.next}
         prevPage={locations.info.prev}
         currentPage={page}
         pagesCount={locations.info.pages}
       />
-    </div>
+    </>
   );
 };
 
