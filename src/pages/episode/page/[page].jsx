@@ -28,8 +28,8 @@ const Episodes = () => {
       {!loading && (
         <>
           <CardWrapper>
-            {data.episodes.results.map((character) => (
-              <GridCard type="episode" data={character} />
+            {data.episodes.results.map((character, index) => (
+              <GridCard type="episode" data={character} key={index} />
             ))}
           </CardWrapper>
           <PageNavigate

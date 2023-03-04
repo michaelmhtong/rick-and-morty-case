@@ -30,8 +30,8 @@ const Episode = () => {
         {episode.episode} {episode.name}
       </Heading>
       <CharacterWrapper>
-        {episode.characters.map((character) => (
-          <CharacterCard character={character} />
+        {episode.characters.map((character, index) => (
+          <CharacterCard character={character} key={index} />
         ))}
       </CharacterWrapper>
     </>

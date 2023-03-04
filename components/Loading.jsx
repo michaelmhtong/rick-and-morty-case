@@ -7,14 +7,14 @@ const Loading = ({ type }) => {
   const skeletons = Array.from({ length: 20 });
   return type == "character" ? (
     <CharacterWrapper>
-      {skeletons.map(() => (
-        <LoadingCharacterCard />
+      {skeletons.map((item, index) => (
+        <LoadingCharacterCard key={index} />
       ))}
     </CharacterWrapper>
   ) : (
     <CardWrapper>
-      {skeletons.map(() => (
-        <LoadingGridCard />
+      {skeletons.map((item, index) => (
+        <LoadingGridCard key={index} />
       ))}
     </CardWrapper>
   );

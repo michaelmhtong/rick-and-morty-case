@@ -28,8 +28,8 @@ const Locations = () => {
       {!loading && (
         <>
           <CardWrapper>
-            {data.locations.results.map((location) => (
-              <GridCard type="location" data={location} />
+            {data.locations.results.map((location, index) => (
+              <GridCard type="location" data={location} key={index}/>
             ))}
           </CardWrapper>
           <PageNavigate

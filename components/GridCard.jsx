@@ -14,7 +14,6 @@ const GridCard = ({ type, data }) => {
     opacity: 1,
   };
 
-  console.log(data);
   return (
     <CardColumn initial={initial} animate={animate} transition={{ duration: 0.5 }} key={data.id}>
       <CardLink href={`../../${type}/id/${data.id}`}>

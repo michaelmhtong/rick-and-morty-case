@@ -31,8 +31,8 @@ const Dimension = () => {
         {name} ({locations.results.length} locations)
       </Heading>
       <CardWrapper>
-        {locations.results.map((character) => (
-          <GridCard type="location" data={character} />
+        {locations.results.map((character, index) => (
+          <GridCard type="location" data={character} key={index}/>
         ))}
       </CardWrapper>
       <PageNavigate

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { CardColumn, CardName, CardText } from "./styles/GridCard.style";
 import {
   CharacterImageWrapper,
@@ -29,7 +30,7 @@ const CharacterCard = ({ character }) => {
       key={character.id}
     >
       <CharacterImageWrapper>
-        <img src={character.image} alt={`Image of ${character.name}`} width={100} height={100} />
+        <Image src={character.image} alt={`Image of ${character.name}`} width={100} height={100} />
       </CharacterImageWrapper>
       <CardName>{character.name}</CardName>
       <CharacterBadgeWrapper>

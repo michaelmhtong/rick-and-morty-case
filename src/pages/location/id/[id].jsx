@@ -27,8 +27,8 @@ const Location = () => {
       <BackButton />
       <Heading>Location - {data.location.name}</Heading>
       <CharacterWrapper>
-        {data.location.residents.map((character) => (
-          <CharacterCard character={character} />
+        {data.location.residents.map((character, index) => (
+          <CharacterCard character={character} key={index} />
         ))}
       </CharacterWrapper>
     </>
