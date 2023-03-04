@@ -1,25 +1,55 @@
-import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import { CgMenuRight } from "react-icons/cg";
+import {
+  MobileIcon,
+  Nav,
+  NavbarContainer,
+  NavItem,
+  NavLinks,
+  NavTitle,
+  NavMenu,
+} from "./styles/Navbar.style";
+import Image from "next/image";
 
 const Navbar = () => {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+  const closeMobileMenu = () => setShow(false);
+
+  const navbarData = [
+    {
+      href: "/character/page/1",
+      text: "Character",
+    },
+    {
+      href: "/location/page/1",
+      text: "Location",
+    },
+    {
+      href: "/episode/page/1",
+      text: "Episode",
+    },
+  ];
+
   return (
-    <div>
-      <h1>Navbar</h1>
-      <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/character/page/1">Character</Link>
-        </li>
-        <li>
-          <Link href="/location/page/1">Location</Link>
-        </li>
-        <li>
-          <Link href="/episode/page/1">Episode</Link>
-        </li>
-      </ul>
-    </div>
+    <Nav>
+      <NavbarContainer>
+        <NavTitle href="/">
+          <Image src="/asset/rick-and-morty.png" alt="logo" width="50" height="50" />
+        </NavTitle>
+        <MobileIcon onClick={handleClick}>{show ? <FaTimes /> : <CgMenuRight />}</MobileIcon>
+        <NavMenu>
+          {navbarData.map((element, index) => (
+            <NavItem key={index}>
+              <NavLinks href={element.href} onClick={closeMobileMenu}>
+                {element.text}
+              </NavLinks>
+            </NavItem>
+          ))}
+        </NavMenu>
+      </NavbarContainer>
+    </Nav>
   );
 };
 
