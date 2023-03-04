@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import { CgMenuRight } from "react-icons/cg";
+import { CgMenuRight, CgClose } from "react-icons/cg";
 import {
   MobileIcon,
   Nav,
@@ -38,8 +37,8 @@ const Navbar = () => {
         <NavTitle href="/">
           <Image src="/asset/rick-and-morty.png" alt="logo" width="50" height="50" />
         </NavTitle>
-        <MobileIcon onClick={handleClick}>{show ? <FaTimes /> : <CgMenuRight />}</MobileIcon>
-        <NavMenu>
+        <MobileIcon onClick={handleClick}>{show ? <CgClose /> : <CgMenuRight />}</MobileIcon>
+        <NavMenu show={show}>
           {navbarData.map((element, index) => (
             <NavItem key={index}>
               <NavLinks href={element.href} onClick={closeMobileMenu}>

@@ -72,7 +72,7 @@ export const NavMenu = styled.ul`
     visibility: ${({ show }) => (show ? "visible" : "hidden")};
     transform: translateY(${({ show }) => (show ? "0" : "-10px")});
     transition: opacity 0.5s ease;
-    background-color: #071c2f;
+    background-color: olivedrab;
   }
   > li:first-child {
     margin-left: auto;
@@ -91,6 +91,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinks = styled(Link)`
+  color: black;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -101,12 +102,13 @@ export const NavLinks = styled(Link)`
     transition: all 0.3s ease;
   }
   @media screen and (max-width: 960px) {
+    color: white;
     text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
     &:hover {
-      color: olivedrab;
+      color: lightgray;
       transition: all 0.3s ease;
     }
   }
