@@ -1,28 +1,52 @@
 import Link from "next/link";
 import React from "react";
+import { CardColumn, CardLink, CardName, CardText } from "./styles/GridCard.style";
+import { FaUser } from "react-icons/fa";
+import { IoPlanet, IoLocationSharp, IoTicket, IoCalendar } from "react-icons/io5";
 
 const GridCard = ({ type, data }) => {
+  const initial = {
+    y: 40,
+    opacity: 0,
+  };
+  const animate = {
+    y: 0,
+    opacity: 1,
+  };
+
   console.log(data);
   return (
-    <Link href={`../../${type}/id/${data.id}`}>
-      <div key={data.id}>
+    <CardColumn initial={initial} animate={animate} transition={{ duration: 0.5 }} key={data.id}>
+      <CardLink href={`../../${type}/id/${data.id}`}>
         {type === "location" ? (
-          <ul>
-            <li>
-              <h1>{data.name}</h1>
-            </li>
-            <li>Type: {data.type}</li>
-            <li>Dimension: {data.dimension}</li>
-            <li>Number of residents: {data.residents.length}</li>
-          </ul>
+          <>
+            <CardName>{data.name}</CardName>
+            <CardText>
+              <IoPlanet /> {data.type}
+            </CardText>
+            <CardText>
+              <IoLocationSharp /> {data.dimension}
+            </CardText>
+            <CardText>
+              <FaUser /> {data.residents.length} residents
+            </CardText>
+          </>
         ) : (
-          <ul>
-            <li>{data.episode}</li>
-            <li>{data.name}</li>
-          </ul>
+          <>
+            <CardName>{data.name}</CardName>
+            <CardText>
+              <IoTicket /> {data.episode}
+            </CardText>
+            <CardText>
+              <IoCalendar /> {data.air_date}
+            </CardText>
+            <CardText>
+              <FaUser /> {data.characters.length} characters
+            </CardText>
+          </>
         )}
-      </div>
-    </Link>
+      </CardLink>
+    </CardColumn>
   );
 };
 

@@ -1,40 +1,53 @@
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import { CardColumn, CardName, CardText } from "./styles/GridCard.style";
+import {
+  CharacterImageWrapper,
+  CharacterBadge,
+  CharacterBadgeWrapper,
+  CharacterTextLink,
+} from "./styles/CharacterCard.style";
+import { IoLocationSharp, IoTicket, IoEarth } from "react-icons/io5";
 
 const CharacterCard = ({ character }) => {
-  console.log(character)
-  return (
-    <div key={character.id}>
-      <h2>{character.name}</h2>
-      <ul>
-        <li>
-          <img src={character.image} alt={`Image of ${character.name}`} width={300} height={300} />
-        </li>
-        <li>{character.status}</li>
-        <li>{character.species}</li>
-        <li>{character.gender}</li>
-        <li>
-          <Link href={`../../dimension/${character.location.dimension}/1`}>
-            Dimension: {character.location.dimension}
-          </Link>
-        </li>
-        <li>
-          <Link href={`../../location/id/${character.location.id}`}>
-            {character.location.name}{" "}
-          </Link>
-        </li>
-        <ul>
-          <li>Episodes</li>
+  const initial = {
+    y: 40,
+    opacity: 0,
+  };
+  const animate = {
+    y: 0,
+    opacity: 1,
+  };
 
-          {character.episode.map((episode) => (
-            <Link href={`../../episode/id/${episode.id}`}>
-              <li key={episode.id}>{episode.episode}</li>
-            </Link>
-          ))}
-        </ul>
-      </ul>
-    </div>
+  const shownEpisode = character.episode.length;
+  const lastEpisode = character.episode[shownEpisode - 1].episode;
+
+  return (
+    <CardColumn
+      initial={initial}
+      animate={animate}
+      transition={{ duration: 0.5 }}
+      key={character.id}
+    >
+      <CharacterImageWrapper>
+        <img src={character.image} alt={`Image of ${character.name}`} width={100} height={100} />
+      </CharacterImageWrapper>
+      <CardName>{character.name}</CardName>
+      <CharacterBadgeWrapper>
+        <CharacterBadge backgroundColor="rgba(255, 0, 0, 0.3)">{character.status}</CharacterBadge>
+        <CharacterBadge backgroundColor="rgba(0, 255, 0, 0.3)">{character.species}</CharacterBadge>
+        <CharacterBadge backgroundColor="rgba(0, 0, 255, 0.3)">{character.gender}</CharacterBadge>
+      </CharacterBadgeWrapper>
+      <CharacterTextLink href={`../../location/id/${character.location.id}`}>
+        <IoEarth /> {character.location.name}
+      </CharacterTextLink>
+      <CharacterTextLink href={`../../dimension/${character.location.dimension}/1`}>
+        <IoLocationSharp /> {character.location.dimension}
+      </CharacterTextLink>
+      <CharacterTextLink href={`../../episode/id/${shownEpisode}`}>
+        <IoTicket /> Last seen in {lastEpisode}
+      </CharacterTextLink>
+      <CardText>Shown in {shownEpisode} episode</CardText>
+    </CardColumn>
   );
 };
 

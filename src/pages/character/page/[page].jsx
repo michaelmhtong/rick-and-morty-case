@@ -6,6 +6,8 @@ import Loading from "../../../../components/Loading";
 import CharacterCard from "../../../../components/CharacterCard";
 import ErrorCard from "../../../../components/ErrorCard";
 import PageNavigate from "../../../../components/PageNavigate";
+import { Heading } from "@/pages/globalStyle";
+import { CharacterWrapper } from "../../../../components/styles/CharacterCard.style";
 
 const Character = () => {
   const router = useRouter();
@@ -14,28 +16,31 @@ const Character = () => {
     variables: { page: parseInt(page) },
     fetchPolicy: "cache-and-network",
   });
-  if (loading) {
-    return <Loading />;
-  }
+
   if (error) {
     return <ErrorCard />;
   }
 
-  const { characters } = data;
-
   return (
-    <div>
-      <h1>All Characters</h1>
-      {characters.results.map((character) => (
-        <CharacterCard character={character} />
-      ))}
-      <PageNavigate
-        nextPage={characters.info.next}
-        prevPage={characters.info.prev}
-        currentPage={page}
-        pagesCount={characters.info.pages}
-      />
-    </div>
+    <>
+      <Heading>All Characters</Heading>
+      {loading && <Loading type="character" />}
+      {!loading && (
+        <>
+          <CharacterWrapper>
+            {data.characters.results.map((character) => (
+              <CharacterCard key={character.id} character={character} />
+            ))}
+          </CharacterWrapper>
+          <PageNavigate
+            nextPage={data.characters.info.next}
+            prevPage={data.characters.info.prev}
+            currentPage={page}
+            pagesCount={data.characters.info.pages}
+          />
+        </>
+      )}
+    </>
   );
 };
 
