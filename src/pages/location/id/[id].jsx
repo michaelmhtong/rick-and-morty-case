@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { LOCATION_QUERY } from "../../../../apollo/queries/locationQuery";
+import { GET_LOCATION } from "../../../../apollo/queries/locationQuery";
 import Loading from "../../../../components/Loading";
 import ErrorCard from "../../../../components/ErrorCard";
 import CharacterCard from "../../../../components/CharacterCard";
@@ -9,7 +9,7 @@ import CharacterCard from "../../../../components/CharacterCard";
 const Location = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { loading, error, data } = useQuery(LOCATION_QUERY, { variables: { id } });
+  const { loading, error, data } = useQuery(GET_LOCATION, { variables: { id } });
 
   if (loading) {
     return <Loading />;
