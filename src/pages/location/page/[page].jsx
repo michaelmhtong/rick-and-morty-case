@@ -24,14 +24,20 @@ const Locations = () => {
   return (
     <>
       <Heading>All Locations</Heading>
+
+      {/* show loading cards if it is loading */}
       {loading && <Loading type="grid" />}
+
+      {/* show grid cards when it get the data */}
       {!loading && (
         <>
           <CardWrapper>
             {data.locations.results.map((location, index) => (
-              <GridCard type="location" data={location} key={index}/>
+              <GridCard type="location" data={location} key={index} />
             ))}
           </CardWrapper>
+
+          {/* page navigation */}
           <PageNavigate
             nextPage={data.locations.info.next}
             prevPage={data.locations.info.prev}
