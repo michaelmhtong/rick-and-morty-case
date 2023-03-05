@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_DIMENSIONS_CHARACTER_ID = gql`
-  query ($dimension: String!) {
-    locations(filter: { dimension: $dimension }) {
+  query ($dimension: String!, $page: Int) {
+    locations(filter: { dimension: $dimension }, page: $page) {
       info {
         pages
         next

@@ -12,9 +12,11 @@ export const CardWrapper = styled.div`
   @media screen and (max-width: 1100px) {
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 3rem;
+    padding-bottom: 4rem;
   }
   @media screen and (max-width: 568px) {
     grid-template-columns: repeat(1, 1fr);
+    padding-bottom: 2rem;
   }
 `;
 
